@@ -1,10 +1,10 @@
-name: 'Node 12 Template Action'
-description: 'Get started with Node actions'
-author: 'GitHub'
+name: 'Setup minikube'
+description: 'Setup minikube'
+author: 'Juraci Paixão Kröhling'
 inputs: 
-  myInput:
-    description: 'Input to use'
-    default: 'world'
+  minikube-version:
+    description: 'The minikube version to download. Example: v1.3.1'
+    default: 'v1.3.1'
 runs:
   using: 'node12'
   main: 'lib/main.js'
