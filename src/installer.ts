@@ -3,7 +3,7 @@ let tempDirectory = process.env['RUNNER_TEMPDIRECTORY'] || '';
 import * as core from '@actions/core';
 import * as tc from '@actions/tool-cache';
 import * as os from 'os';
-import * as path from 'path';
+import * as fs from 'fs';
 import * as util from 'util';
 
 const osPlat: string = os.platform();
@@ -35,6 +35,8 @@ async function acquireMinikube(version: string): Promise<string> {
     core.debug(error);
     throw `Failed to download version ${version}: ${error}`;
   }
+
+  fs.chmodSync(downloadPath, '755');
 
   return await tc.cacheFile(downloadPath, 'minikube', 'minikube', version);
 }
