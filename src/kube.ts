@@ -19,7 +19,8 @@ export async function get(binName: string, version: string) {
   if (!fs.existsSync(localUserCacheDir)) {
     fs.mkdirSync(localUserCacheDir, {recursive: true});
   }
-  fs.copyFileSync(path, `${localUserCacheDir}/${binName}`)
+  fs.copyFileSync(`${path}/${binName}`, `${localUserCacheDir}/${binName}`)
+  fs.chmodSync(`${localUserCacheDir}/${binName}`, '755');
   core.warning(`copied cached binary to ${localUserCacheDir}/${binName}`)
 
   core.addPath(path);
