@@ -4,7 +4,8 @@ import * as installer from './installer';
 async function run() {
   try {
     const version = core.getInput('minikube-version');
-    await installer.getMinikube(version);
+    const kubernetesVersion = core.getInput('kubernetes-version');
+    await installer.get(version, kubernetesVersion);
   } catch (error) {
     core.setFailed(error.message);
   }

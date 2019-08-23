@@ -5,6 +5,9 @@ inputs:
   minikube-version:
     description: 'The minikube version to download. Example: v1.3.1'
     default: 'v1.3.1'
+  kubernetes-version:
+    description: 'The Kubernetes version to use. Applies also to the tools kubeadm and kubelet. Example: v1.14.0'
+    default: 'v1.14.0'
 runs:
   using: 'node12'
   main: 'lib/main.js'
