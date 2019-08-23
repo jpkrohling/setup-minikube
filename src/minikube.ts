@@ -28,7 +28,7 @@ async function acquire(version: string): Promise<string> {
     downloadPath = await tc.downloadTool(downloadUrl);
   } catch (error) {
     core.debug(error);
-    throw `Failed to download version ${version}: ${error}`;
+    throw `failed to download minikube version ${version}: ${error}`;
   }
 
   fs.chmodSync(downloadPath, '755');

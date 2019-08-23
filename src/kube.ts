@@ -27,7 +27,7 @@ async function acquire(binName: string, version: string): Promise<string> {
     downloadPath = await tc.downloadTool(downloadUrl);
   } catch (error) {
     core.debug(error);
-    throw `Failed to download version ${version}: ${error}`;
+    throw `failed to download ${binName} version ${version}: ${error}`;
   }
 
   fs.chmodSync(downloadPath, '755');
