@@ -14,6 +14,14 @@ export async function get(binName: string, version: string) {
     core.debug(`${binName} is cached under ${path}`);
   }
 
+  // copy the resulting file to the local user's cache, which is the expected location by minikube
+  let localUserCacheDir = `${os.homedir()}/.minikube/cache/${version}`;
+  if (!fs.existsSync(localUserCacheDir)) {
+    fs.mkdirSync(localUserCacheDir, {recursive: true});
+  }
+  fs.copyFileSync(path, `${localUserCacheDir}/${binName}`)
+  core.warning(`copied cached binary to ${localUserCacheDir}/${binName}`)
+
   core.addPath(path);
 }
 
@@ -31,13 +39,6 @@ async function acquire(binName: string, version: string): Promise<string> {
   }
 
   fs.chmodSync(downloadPath, '755');
-
-  // copy the resulting file to the local user's cache, which is the expected location by minikube
-  let localUserCacheDir = `${os.homedir()}/.minikube/cache/${version}`;
-  if (!fs.existsSync(localUserCacheDir)) {
-    fs.mkdirSync(localUserCacheDir, {recursive: true});
-  }
-  fs.copyFileSync(downloadPath, `${localUserCacheDir}/${binName}`)
 
   return await tc.cacheFile(downloadPath, binName, binName, version);
 }
