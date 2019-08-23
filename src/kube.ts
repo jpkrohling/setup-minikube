@@ -35,7 +35,7 @@ async function acquire(binName: string, version: string): Promise<string> {
   // copy the resulting file to the local user's cache, which is the expected location by minikube
   let localUserCacheDir = `${os.homedir()}/.minikube/cache/${version}`;
   if (!fs.existsSync(localUserCacheDir)) {
-    fs.mkdirSync(localUserCacheDir);
+    fs.mkdirSync(localUserCacheDir, {recursive: true});
   }
   fs.copyFileSync(downloadPath, `${localUserCacheDir}/${binName}`)
 
