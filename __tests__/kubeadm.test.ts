@@ -26,8 +26,8 @@ describe('kubeadm tests', () => {
   }, 100000);
 
   it('Acquires version of kubeadm if no matching version is installed', async () => {
-    await kubeadm.get('v1.15.0');
-    const kubeadmDir = path.join(toolDir, 'kubeadm', '1.15.0', os.arch());
+    await kubeadm.get('v1.14.0');
+    const kubeadmDir = path.join(toolDir, 'kubeadm', '1.14.0', os.arch());
 
     expect(fs.existsSync(`${kubeadmDir}.complete`)).toBe(true);
     expect(fs.existsSync(path.join(kubeadmDir, 'kubeadm'))).toBe(true);

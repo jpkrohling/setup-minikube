@@ -26,8 +26,8 @@ describe('kubelet tests', () => {
   }, 100000);
 
   it('Acquires version of kubelet if no matching version is installed', async () => {
-    await kubelet.get('v1.15.0');
-    const kubeletDir = path.join(toolDir, 'kubelet', '1.15.0', os.arch());
+    await kubelet.get('v1.14.0');
+    const kubeletDir = path.join(toolDir, 'kubelet', '1.14.0', os.arch());
 
     expect(fs.existsSync(`${kubeletDir}.complete`)).toBe(true);
     expect(fs.existsSync(path.join(kubeletDir, 'kubelet'))).toBe(true);
