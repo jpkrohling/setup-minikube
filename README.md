@@ -1,9 +1,32 @@
-# JavaScript Action Template
+# GitHub action for setting up `minikube`
 
-This template offers an easy way to get started writing a javascript action with TypeScript compile time support, unit testing with Jest and using the GitHub Actions Toolkit.
+This ia a simple GitHub Action for setting up the `minikube` binary for a GitHub Workflow.
 
-## Getting Started
+## Usage
 
-See the walkthrough located [here](https://github.com/actions/toolkit/blob/master/docs/javascript-action.md).
+```yaml
+jobs:
+  your-job:
+    steps:
+    - uses: jpkrohling/setup-minikube@v1.0.0
+```
 
-In addition to walking your through how to create an action, it also provides strategies for versioning, releasing and referencing your actions.
+or, overridding the version:
+
+```yaml
+jobs:
+  your-job:
+    steps:
+    - uses: jpkrohling/setup-minikube@v1.0.0
+      with:
+        minikube-version: v1.3.1
+```
+
+## Contributing
+
+This action is based on the JavaScript template. Check the [walkthrough](https://github.com/actions/toolkit/blob/master/docs/javascript-action.md) to get started with it. To contribute to this project, just open a PR with your proposed changes, making sure to include the transpiled files (`./lib/*.js`): you can get them as a result of `npm run build`.
+
+## See also
+
+- [setup-kubectl](https://github.com/jpkrohling/setup-kubectl)
+- [setup-operator-sdk](https://github.com/jpkrohling/setup-operator-sdk)
